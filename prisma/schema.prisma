@@ -1,0 +1,272 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Adjust based on your database
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id          String        @id @default(uuid())
+  name        String?
+  email       String        @unique
+  password    String?
+  image       String?
+  role        Role          @default(USER)
+  testattempt testattempt[] @relation("userTestAttempts")
+  customtests customtest[]  @relation("userCustomTests")
+  accounts    account[]     @relation("useraccounts")
+  sessions    session[]     @relation("usersessions")
+}
+
+model testattempt {
+  id               String            @id @default(uuid())
+  userId           String
+  user             user              @relation("userTestAttempts", fields: [userId], references: [id])
+  testseriesId     String?
+  testseries       testseries?       @relation("testseriesTestAttempts", fields: [testseriesId], references: [id])
+  customtestId     String?
+  customtest       customtest?       @relation("customtestTestAttempts", fields: [customtestId], references: [id])
+  questionattempts questionattempt[] // Removed duplicate
+  score            Int?
+  isPassed         Boolean?
+  status           String            @default("IN_PROGRESS")
+  completedAt      DateTime?
+  createdat        DateTime          @default(now())
+  updatedat        DateTime          @updatedAt
+  deleted          Boolean           @default(false)
+  deletedat        DateTime?
+}
+
+model questionattempt {
+  id             String      @id @default(uuid())
+  testattemptId  String
+  testattempt    testattempt @relation(fields: [testattemptId], references: [id]) // Removed duplicate
+  questionId     String
+  question       question    @relation("questionQuestionAttempts", fields: [questionId], references: [id])
+  selectedAnswer String? // The answer selected by the user
+  isCorrect      Boolean? // Whether the selectedAnswer was correct
+  timeTaken      Int? // Time taken in seconds to answer the question
+}
+
+model customtest {
+  id            String        @id @default(uuid())
+  title         String
+  description   String?
+  createdat     DateTime      @default(now())
+  updatedat     DateTime      @updatedAt
+  questioncount Int?
+  marks         Int?
+  questiontype  Questiontype
+  userId        String
+  user          user          @relation("userCustomTests", fields: [userId], references: [id])
+  examId        String?
+  exam          exam?         @relation("examCustomTests", fields: [examId], references: [id])
+  examitemId    String?
+  examitem      examitem?     @relation("examitemCustomTests", fields: [examitemId], references: [id])
+  classModelId  String
+  classModel    ClassModel?   @relation("classModelCustomTests", fields: [classModelId], references: [id])
+  subjectId     String?
+  subject       subject?      @relation("subjectCustomTests", fields: [subjectId], references: [id])
+  topicId       String?
+  topic         topic?        @relation("topicCustomTests", fields: [topicId], references: [id])
+  subtopicId    String?
+  subtopic      subtopic?     @relation("subtopicCustomTests", fields: [subtopicId], references: [id])
+  questions     question[]    @relation("customtestQuestions")
+  testattempt   testattempt[] @relation("customtestTestAttempts")
+  deleted       Boolean       @default(false)
+  deletedat     DateTime?
+}
+
+model ClassModel {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  subjects    subject[]    @relation("classSubjects")
+  customtests customtest[] @relation("classModelCustomTests")
+  testseries  testseries[] @relation("classModelTestSeries")
+  questions   question[]   @relation("classModelQuestions")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model subject {
+  id          String       @id @default(uuid())
+  name        String
+  classId     String
+  description String?
+  classModel  ClassModel?  @relation("classSubjects", fields: [classId], references: [id])
+  topics      topic[]      @relation("subjectTopics")
+  customtests customtest[] @relation("subjectCustomTests")
+  testseries  testseries[] @relation("subjectTestSeries")
+  questions   question[]   @relation("subjectQuestions")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model topic {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  subjectId   String
+  subject     subject?     @relation("subjectTopics", fields: [subjectId], references: [id])
+  subtopics   subtopic[]   @relation("topicSubtopics")
+  testseries  testseries[] @relation("topicTestSeries")
+  customtests customtest[] @relation("topicCustomTests")
+  questions   question[]   @relation("topicQuestions")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model subtopic {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  topicId     String
+  topic       topic?       @relation("topicSubtopics", fields: [topicId], references: [id])
+  questions   question[]   @relation("subtopicQuestions")
+  testseries  testseries[] @relation("subtopicTestSeries")
+  customtests customtest[] @relation("subtopicCustomTests")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model exam {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  examitems   examitem[]   @relation("examExamItems")
+  customtests customtest[] @relation("examCustomTests")
+  testseries  testseries[] @relation("examTestSeries")
+  questions   question[]   @relation("examQuestions")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model examitem {
+  id          String       @id @default(uuid())
+  name        String
+  description String?
+  examId      String
+  exam        exam         @relation("examExamItems", fields: [examId], references: [id])
+  customtests customtest[] @relation("examitemCustomTests")
+  testseries  testseries[] @relation("examitemTestSeries")
+  questions   question[]   @relation("examitemQuestions")
+  createdat   DateTime     @default(now())
+  updatedat   DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedat   DateTime?
+}
+
+model testseries {
+  id            String        @id @default(uuid())
+  name          String
+  questioncount Int?
+  marksTotal    Int?
+  duration      Int?          // Added time field (duration in minutes)
+  questiontype  Questiontype
+  examId        String?
+  exam          exam?         @relation("examTestSeries", fields: [examId], references: [id])
+  examitemId    String?
+  examitem      examitem?     @relation("examitemTestSeries", fields: [examitemId], references: [id])
+  classModelId  String?
+  classModel    ClassModel?   @relation("classModelTestSeries", fields: [classModelId], references: [id])
+  subjectId     String?
+  subject       subject?      @relation("subjectTestSeries", fields: [subjectId], references: [id])
+  topicId       String?
+  topic         topic?        @relation("topicTestSeries", fields: [topicId], references: [id])
+  subtopicId    String?
+  subtopic      subtopic?     @relation("subtopicTestSeries", fields: [subtopicId], references: [id])
+  questions     question[]    @relation("testseriesQuestions")
+  testattempts  testattempt[] @relation("testseriesTestAttempts") // Removed duplicate
+  createdat     DateTime      @default(now())
+  updatedat     DateTime      @updatedAt
+  deleted       Boolean       @default(false)
+  deletedat     DateTime?
+}
+
+enum Questioncategory {
+  exam
+  class
+}
+
+model question {
+  id               String            @id @default(uuid())
+  questiontext     String
+  options          String[]          @default([])
+  correctanswer    String
+  marks            Int
+  questiontype     Questiontype
+  years            String[]          @default([]) // Make the whole field optional (no null elements in array)
+  difficultylevel  Difficultylevel
+  classModelId     String?
+  classModel       ClassModel?       @relation("classModelQuestions", fields: [classModelId], references: [id])
+  subjectId        String?
+  subject          subject?          @relation("subjectQuestions", fields: [subjectId], references: [id])
+  topicId          String?
+  topic            topic?            @relation("topicQuestions", fields: [topicId], references: [id])
+  subtopicId       String?
+  subtopic         subtopic?         @relation("subtopicQuestions", fields: [subtopicId], references: [id])
+  testseries       testseries[]      @relation("testseriesQuestions") // Many-to-many relation
+  customtests      customtest[]      @relation("customtestQuestions")
+  createdat        DateTime          @default(now())
+  updatedat        DateTime          @updatedAt
+  solution         String? // New column added for solution, optional
+  questioncategory Questioncategory  @default(exam) // New column added for question category
+  examitemId       String?
+  examitem         examitem?         @relation("examitemQuestions", fields: [examitemId], references: [id])
+  examId           String? // Foreign key to exam
+  exam             exam?             @relation("examQuestions", fields: [examId], references: [id])
+  deleted          Boolean           @default(false)
+  deletedat        DateTime?
+  questionattempts questionattempt[] @relation("questionQuestionAttempts") // Reciprocal relation added
+}
+
+model account {
+  id                String  @id @default(cuid())
+  userid            String
+  provider          String
+  provideraccountid String
+  type              String
+  accesstoken       String?
+  tokentype         String?
+  scope             String?
+  user              user    @relation("useraccounts", fields: [userid], references: [id])
+
+  @@unique([provider, provideraccountid])
+}
+
+model session {
+  id           String   @id @default(cuid())
+  sessiontoken String   @unique
+  userid       String
+  user         user     @relation("usersessions", fields: [userid], references: [id])
+  expires      DateTime
+}
+
+enum Questiontype {
+  MCQ
+  PYQ
+}
+
+enum Difficultylevel {
+  Easy
+  Medium
+  Hard
+}
+
+enum Role {
+  USER
+  ADMIN
+}
