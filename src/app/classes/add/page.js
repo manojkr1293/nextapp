@@ -31,6 +31,7 @@ const AddClass = () =>{
   return(
     <>
     <ProtectedRoute roleRequired={'ADMIN'}>
+     
       <AdminLayout>
         <div className="max-w-7xl mx-auto">
           <h1 className="text-2xl font-semibold mb-6">Create New Class</h1>

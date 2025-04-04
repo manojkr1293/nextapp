@@ -1,4 +1,4 @@
-import { createSubTopicService, fetchAllSubTopicOnTopicIdService, fetchAllSubTopicService } from "../../../../services/subTopicModelService";
+import { createSubTopicService, fetchAllSubTopicOnTopicIdService, fetchAllSubTopicService } from "services/subTopicModelService";
 
 export async function GET(req) {
   try{

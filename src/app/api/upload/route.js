@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import * as XLSX from 'xlsx';
-
-const prisma = new PrismaClient();
-
+import prisma from '@/lib/prisma';
 const parseExcelFile = (fileBuffer) => {
   // Read the workbook from the buffer
   const workbook = XLSX.read(fileBuffer, { type: 'buffer' });

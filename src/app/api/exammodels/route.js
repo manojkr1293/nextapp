@@ -1,4 +1,4 @@
-import { createExamModel, getAllExamModels } from "../../../../services/examModelService";
+import { createExamModel, getAllExamModels } from "services/examModelService";
 
 
 export async function GET(req) {

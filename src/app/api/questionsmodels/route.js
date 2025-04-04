@@ -1,4 +1,4 @@
-import { createQuestionService, fetchAllQuestionsService, fetchQuestionsForTestService } from "../../../../services/questionService";
+import { createQuestionService, fetchAllQuestionsService, fetchQuestionsForTestService } from "services/questionService";
 
 export async function GET(req) {
   try{

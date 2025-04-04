@@ -2,11 +2,9 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from '@prisma/client';
 
+import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
 
 const handler = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -78,7 +76,7 @@ const handler = NextAuth({
             await prisma.account.create({
               data: {
                 provider: account.provider,
-                providerAccountId: account.providerAccountId,
+                providerAccountId: account.id, // Corrected
                 userId: existingUser.id,
                 type: 'oauth',
               },
@@ -97,7 +95,7 @@ const handler = NextAuth({
           await prisma.account.create({
             data: {
               provider: account.provider,
-              providerAccountId: account.providerAccountId,
+              providerAccountId: account.id, // Corrected
               userId: newUser.id,
               type: 'oauth',
             },
@@ -153,7 +151,8 @@ const handler = NextAuth({
     error: "/unauthorized",
   },
 
-  debug: true,
+  //debug: true,
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };

@@ -1,4 +1,4 @@
-import { bulkQuestionSubmitService } from '../../../../../services/testAttemptService';
+import { bulkQuestionSubmitService } from 'services/testAttemptService';
 
 export async function POST(req) {
   try {

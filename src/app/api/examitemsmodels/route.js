@@ -1,4 +1,4 @@
-import { createExamItemModelService, fetchAllExamItemOnExamId, fetchExamItemOnId, getAllExamItemModel } from "../../../../services/examItemModelService";
+import { createExamItemModelService, fetchAllExamItemOnExamId, fetchExamItemOnId, getAllExamItemModel } from "services/examItemModelService";
 
 export async function GET(req) {
   try{

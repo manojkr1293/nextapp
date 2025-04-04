@@ -1,4 +1,4 @@
-import { fetchAllTestAttemptOnUserId, fetchTestAttemptOnId, finishTestAttemptService } from "../../../../services/testAttemptService";
+import { fetchAllTestAttemptOnUserId, fetchTestAttemptOnId, finishTestAttemptService } from "services/testAttemptService";
 
 
 export async function GET(req) {

@@ -1,4 +1,4 @@
-import { createTopicModelService, fetchAllTopicModelsService, fetchAllTopicOnSubjectIdService } from "../../../../services/topicModelService";
+import { createTopicModelService, fetchAllTopicModelsService, fetchAllTopicOnSubjectIdService } from "services/topicModelService";
 
 /*export async function POST(req) {
   try{

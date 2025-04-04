@@ -1,7 +1,10 @@
-import {  createClassModel, getAllClassModels } from "../../../../services/classModelService";
+
+
+import { createClassModel,getAllClassModels } from "services/classModelService";
 
 export async function GET(req) {
   try{
+    createClassModel
     const fetchAllClassModel = await getAllClassModels();
     return new Response(JSON.stringify(fetchAllClassModel),{
       status:200,

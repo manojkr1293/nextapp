@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import { fetchtestSeriesOnId, getAlltestSeriesModels } from '../../../../services/testseriesModelService';
+import { fetchtestSeriesOnId, getAlltestSeriesModels } from 'services/testseriesModelService';
 
-const prisma = new PrismaClient();
 
 export async function GET(req) {
   try {

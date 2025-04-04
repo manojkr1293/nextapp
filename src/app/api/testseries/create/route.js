@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { createtestSeriesModel } from '../../../../../services/testseriesModelService';
 
-const prisma = new PrismaClient();
+import { createtestSeriesModel } from 'services/testseriesModelService';
+import prisma from '@/lib/prisma';
+
 
 export async function POST(req) {
   try {

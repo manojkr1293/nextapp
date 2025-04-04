@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { createTestAttemptService } from '../../../../../services/testAttemptService';
-const prisma = new PrismaClient();
 
+import { createTestAttemptService } from 'services/testAttemptService';
+import prisma from '@/lib/prisma';
 export async function POST(req) {
   try {
     const body = await req.json();
