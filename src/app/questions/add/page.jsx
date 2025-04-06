@@ -1,16 +1,23 @@
-'use client'
-import AdminLayout from '@/app/component/Layout/AdminLayout';
-import ProtectedRoute from '@/app/component/ProtectedRoute';
-import { classModelActions } from '@/store/slices/classModelSlice';
-import { examModelActions } from '@/store/slices/examSlice';
-import { questionActions } from '@/store/slices/questionSlice';
-import { subjectModelActions } from '@/store/slices/subjectModelSlice';
-import { subTopicSliceActions } from '@/store/slices/subTopicSlice';
-import { topicModelActions } from '@/store/slices/topicModelSlice';
-import QuillEditor from '@/app/component/QuillEditor';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { examItemModelActions } from '@/store/slices/examItemSlice';
+"use client";
+import AdminLayout from "@/app/component/Layout/AdminLayout";
+import ProtectedRoute from "@/app/component/ProtectedRoute";
+import { classModelActions } from "@/store/slices/classModelSlice";
+import { examModelActions } from "@/store/slices/examSlice";
+import { questionActions } from "@/store/slices/questionSlice";
+import { subjectModelActions } from "@/store/slices/subjectModelSlice";
+import { subTopicSliceActions } from "@/store/slices/subTopicSlice";
+import { topicModelActions } from "@/store/slices/topicModelSlice";
+//import QuillEditor from '@/app/component/QuillEditor';
+import dynamic from "next/dynamic";
+
+// Dynamically import with SSR disabled
+const QuillEditor = dynamic(() => import("../../component/QuillEditor"), {
+  ssr: false,
+});
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { examItemModelActions } from "@/store/slices/examItemSlice";
 import { useRouter } from "next/navigation";
 
 export default function AddQuestion() {
@@ -19,10 +26,10 @@ export default function AddQuestion() {
   const { topicModels } = useSelector((state) => state.topicModel);
   const { subTopicModels } = useSelector((state) => state.subTopicModel);
   const { examModels } = useSelector((state) => state.examModel); // Assuming exams are fetched from the store
-  const { examItemModels }  = useSelector((state)=>state.examItemModel);
+  const { examItemModels } = useSelector((state) => state.examItemModel);
   const [selectedYears, setSelectedYears] = useState([]);
   const router = useRouter();
-  
+
   // Generate a list of years from 2000 to 2024
   const years = [];
   for (let i = 2000; i <= 2024; i++) {
@@ -30,24 +37,24 @@ export default function AddQuestion() {
   }
   //const []
   const [formData, setFormData] = useState({
-    questiontext: '',
-    options: [''],
-    correctanswer: '',
-    marks: '',
+    questiontext: "",
+    options: [""],
+    correctanswer: "",
+    marks: "",
     pyqyears: [],
-    questiontype: 'MCQ',
-    difficultylevel: 'Medium',
-    testseriesId: '',
-    questioncategory: 'exam',
-    examIds: '',
-    examitemId:"",
-    solution: '', // Added field for solution
+    questiontype: "MCQ",
+    difficultylevel: "Medium",
+    testseriesId: "",
+    questioncategory: "exam",
+    examIds: "",
+    examitemId: "",
+    solution: "", // Added field for solution
     classModelId: "",
     subjectId: "",
     topicId: "",
     subtopicId: "",
   });
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,50 +64,54 @@ export default function AddQuestion() {
 
   useEffect(() => {
     if (formData.examIds) {
-      
-      dispatch(examItemModelActions.fetchexamItemOnExamIdSlice(formData.examIds));
+      dispatch(
+        examItemModelActions.fetchexamItemOnExamIdSlice(formData.examIds)
+      );
       setFormData((prevData) => ({
         ...prevData,
-        examitemId: ""
+        examitemId: "",
       }));
     }
   }, [dispatch, formData.examIds]);
 
   useEffect(() => {
     if (formData.classModelId) {
-      dispatch(subjectModelActions.fetchSubjectOnClassIdSlice(formData.classModelId));
+      dispatch(
+        subjectModelActions.fetchSubjectOnClassIdSlice(formData.classModelId)
+      );
       setFormData((prevData) => ({
         ...prevData,
         subjectId: "", // Reset subject when class changes
-        topicId: "",   // Reset topic when class changes
-        subtopicId:""
+        topicId: "", // Reset topic when class changes
+        subtopicId: "",
       }));
     }
   }, [dispatch, formData.classModelId]);
 
-  
   useEffect(() => {
     if (formData.subjectId) {
-      dispatch(topicModelActions.fetchAllTopicOnSubjectIdSlice(formData.subjectId));
+      dispatch(
+        topicModelActions.fetchAllTopicOnSubjectIdSlice(formData.subjectId)
+      );
       setFormData((prevData) => ({
         ...prevData,
-        topicId: "",   // Reset topic when class changes
-        subtopicId:""
+        topicId: "", // Reset topic when class changes
+        subtopicId: "",
       }));
     }
   }, [dispatch, formData.subjectId]);
 
   useEffect(() => {
     if (formData.topicId) {
-      dispatch(subTopicSliceActions.fetchAllSubTopicOnTopicIdSlice(formData.topicId));
+      dispatch(
+        subTopicSliceActions.fetchAllSubTopicOnTopicIdSlice(formData.topicId)
+      );
       setFormData((prevData) => ({
         ...prevData,
-        subtopicId:""
+        subtopicId: "",
       }));
     }
   }, [dispatch, formData.topicId]);
-
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -110,8 +121,8 @@ export default function AddQuestion() {
     }));
   };
 
-   // Dynamic handler for all QuillEditors
-   const handleEditorChange = (name, value) => {
+  // Dynamic handler for all QuillEditors
+  const handleEditorChange = (name, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -128,11 +139,11 @@ export default function AddQuestion() {
     }));
   };
 
-   // Add a new option dynamically
-   const handleAddOption = () => {
+  // Add a new option dynamically
+  const handleAddOption = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      options: [...prevFormData.options, ''],
+      options: [...prevFormData.options, ""],
     }));
   };
 
@@ -159,8 +170,8 @@ export default function AddQuestion() {
     setFormData((prevState) => ({
       ...prevState,
       pyqyears: checked
-      ? [...prevState.pyqyears, value] // Add the exam to exams array
-      : prevState.pyqyears.filter((year) => year !== value),
+        ? [...prevState.pyqyears, value] // Add the exam to exams array
+        : prevState.pyqyears.filter((year) => year !== value),
     }));
   };
 
@@ -168,20 +179,34 @@ export default function AddQuestion() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   useEffect(() => {
-    console.log('formData', formData); // Log formData whenever it changes
-    
-  }, [formData]); 
+    console.log("formData", formData); // Log formData whenever it changes
+  }, [formData]);
 
   const handleSubmit = async (e) => {
-    
-
-    const { questiontext, options, correctanswer, marks, questiontype, questioncategory, pyqyears, difficultylevel, testseriesId, solution, examIds, examitemId, classModelId, subjectId, topicId, subtopicId } = formData;
+    const {
+      questiontext,
+      options,
+      correctanswer,
+      marks,
+      questiontype,
+      questioncategory,
+      pyqyears,
+      difficultylevel,
+      testseriesId,
+      solution,
+      examIds,
+      examitemId,
+      classModelId,
+      subjectId,
+      topicId,
+      subtopicId,
+    } = formData;
 
     let marksInt = parseInt(marks, 10);
     if (isNaN(marksInt)) {
-      alert('Invalid marks value. It should be a valid number.');
+      alert("Invalid marks value. It should be a valid number.");
       return;
     }
 
@@ -192,7 +217,7 @@ export default function AddQuestion() {
       marks: marksInt,
       questiontype,
       questioncategory,
-      years:pyqyears,
+      years: pyqyears,
       difficultylevel,
       examIds,
       examitemId,
@@ -201,14 +226,16 @@ export default function AddQuestion() {
       subjectId,
       topicId,
       subtopicId,
-      testseriesId
+      testseriesId,
     };
     console.log(questionPayload);
     e.preventDefault();
-    dispatch(questionActions.createQuestionSlice({ questions: [questionPayload] }));
+    dispatch(
+      questionActions.createQuestionSlice({ questions: [questionPayload] })
+    );
     router.push("/questions");
     //alert('Question added successfully!');
-   /* setFormData({
+    /* setFormData({
       questiontext: '',
       options: ['', '', '', ''],
       correctanswer: '',
@@ -222,22 +249,32 @@ export default function AddQuestion() {
   };
 
   return (
-    <ProtectedRoute roleRequired={'ADMIN'}>
+    <ProtectedRoute roleRequired={"ADMIN"}>
       <AdminLayout>
-      <div className="flex items-center justify-center bg-gray-100 p-4">
+        <div className="flex items-center justify-center bg-gray-100 p-4">
           <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Add a New Question</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">
+              Add a New Question
+            </h2>
             <form onSubmit={handleSubmit}>
               {/* Question Text */}
               <div className="mb-6">
-                <label className="block text-lg font-medium text-gray-700 mb-2">Question</label>
-                <QuillEditor value={formData.questiontext} 
-                onChange={(value) => handleEditorChange('questiontext', value)} />
+                <label className="block text-lg font-medium text-gray-700 mb-2">
+                  Question
+                </label>
+                <QuillEditor
+                  value={formData.questiontext}
+                  onChange={(value) =>
+                    handleEditorChange("questiontext", value)
+                  }
+                />
               </div>
 
               {/* Options */}
               <div className="mb-4">
-                <label className="block text-lg font-medium text-gray-700">Options</label>
+                <label className="block text-lg font-medium text-gray-700">
+                  Options
+                </label>
                 {formData.options.map((option, index) => (
                   <div key={index} className="mb-2">
                     <QuillEditor
@@ -264,16 +301,24 @@ export default function AddQuestion() {
 
               {/* Correct Answer */}
               <div className="mb-4">
-                <label className="block text-lg font-medium text-gray-700">Correct Answer</label>
-                
-                <QuillEditor value={formData.correctanswer} 
-                onChange={(value) => handleEditorChange('correctanswer', value)} />
+                <label className="block text-lg font-medium text-gray-700">
+                  Correct Answer
+                </label>
+
+                <QuillEditor
+                  value={formData.correctanswer}
+                  onChange={(value) =>
+                    handleEditorChange("correctanswer", value)
+                  }
+                />
               </div>
 
               {/* Marks and Question Type */}
               <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-lg font-medium text-gray-700">Marks</label>
+                  <label className="block text-lg font-medium text-gray-700">
+                    Marks
+                  </label>
                   <input
                     type="number"
                     name="marks"
@@ -285,7 +330,9 @@ export default function AddQuestion() {
                 </div>
 
                 <div>
-                  <label className="block text-lg font-medium text-gray-700">Question Type</label>
+                  <label className="block text-lg font-medium text-gray-700">
+                    Question Type
+                  </label>
                   <select
                     name="questiontype"
                     value={formData.questiontype}
@@ -298,12 +345,12 @@ export default function AddQuestion() {
                 </div>
               </div>
 
-              
-
-               {/* Years Selection (for PYQ type) */}
-               {formData.questiontype === 'PYQ' && (
+              {/* Years Selection (for PYQ type) */}
+              {formData.questiontype === "PYQ" && (
                 <div className="mb-4">
-                  <label className="block text-lg font-medium text-gray-700">Select Years</label>
+                  <label className="block text-lg font-medium text-gray-700">
+                    Select Years
+                  </label>
                   <div className="flex flex-wrap gap-4">
                     {years.map((year) => (
                       <label key={year} className="inline-flex items-center">
@@ -321,9 +368,11 @@ export default function AddQuestion() {
                 </div>
               )}
 
-               {/* Category Selection */}
-               <div className="mb-6">
-                <label className="block text-lg font-medium text-gray-700">Difficulty Level</label>
+              {/* Category Selection */}
+              <div className="mb-6">
+                <label className="block text-lg font-medium text-gray-700">
+                  Difficulty Level
+                </label>
                 <select
                   name="difficultylevel"
                   value={formData.difficultylevel}
@@ -335,12 +384,12 @@ export default function AddQuestion() {
                   <option value="Hard">Hard</option>
                 </select>
               </div>
-              
-              
 
               {/* Category Selection */}
               <div className="mb-6">
-                <label className="block text-lg font-medium text-gray-700">Question Category</label>
+                <label className="block text-lg font-medium text-gray-700">
+                  Question Category
+                </label>
                 <select
                   name="questioncategory"
                   value={formData.questioncategory}
@@ -353,50 +402,55 @@ export default function AddQuestion() {
               </div>
 
               {/* Exam Selection (for exam category) */}
-              {formData.questioncategory === 'exam' && (
+              {formData.questioncategory === "exam" && (
                 <>
-                <div className="mb-6">
-                  <label className="block text-lg font-medium text-gray-700">Exams Category</label>
-                  
-                  <select
-                    name="examIds"
-                    onChange={handleSelectChange}
-                    className="w-full p-2 mt-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">Please Select</option>
-                    {examModels.map((exam) => (
-                      <option key={exam.id} value={exam.id}>
-                        {exam.name}
-                      </option>
-                    ))}
-                  </select>
-                  
-                </div>
+                  <div className="mb-6">
+                    <label className="block text-lg font-medium text-gray-700">
+                      Exams Category
+                    </label>
 
-                <div className="mb-6">
-                <label className="block text-lg font-medium text-gray-700">Select Exams</label>
-                <select
-                  name="examitemId"
-                  onChange={handleSelectChange}
-                  className="w-full p-2 mt-2 border border-gray-300 rounded-md"
-                  disabled={!formData.examIds}
-                >
-                  <option value="">Please Select</option>
-                  {examItemModels.map((examItems) => (
-                    <option key={examItems.id} value={examItems.id}>
-                      {examItems.name}
-                    </option>
-                  ))}
-                </select>
-                </div>
+                    <select
+                      name="examIds"
+                      onChange={handleSelectChange}
+                      className="w-full p-2 mt-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="">Please Select</option>
+                      {examModels.map((exam) => (
+                        <option key={exam.id} value={exam.id}>
+                          {exam.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="mb-6">
+                    <label className="block text-lg font-medium text-gray-700">
+                      Select Exams
+                    </label>
+                    <select
+                      name="examitemId"
+                      onChange={handleSelectChange}
+                      className="w-full p-2 mt-2 border border-gray-300 rounded-md"
+                      disabled={!formData.examIds}
+                    >
+                      <option value="">Please Select</option>
+                      {examItemModels.map((examItems) => (
+                        <option key={examItems.id} value={examItems.id}>
+                          {examItems.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </>
               )}
 
               {/* Class, Subject, Topic, Subtopic (only if category is 'class') */}
-              {formData.questioncategory === 'class' && (
+              {formData.questioncategory === "class" && (
                 <>
                   <div className="mb-6">
-                    <label className="block text-lg font-medium text-gray-700">Select Class</label>
+                    <label className="block text-lg font-medium text-gray-700">
+                      Select Class
+                    </label>
                     <select
                       name="classModelId"
                       onChange={handleSelectChange}
@@ -412,7 +466,9 @@ export default function AddQuestion() {
                   </div>
 
                   <div className="mb-6">
-                    <label className="block text-lg font-medium text-gray-700">Select Subject</label>
+                    <label className="block text-lg font-medium text-gray-700">
+                      Select Subject
+                    </label>
                     <select
                       name="subjectId"
                       onChange={handleSelectChange}
@@ -429,7 +485,9 @@ export default function AddQuestion() {
                   </div>
 
                   <div className="mb-6">
-                    <label className="block text-lg font-medium text-gray-700">Select Topic</label>
+                    <label className="block text-lg font-medium text-gray-700">
+                      Select Topic
+                    </label>
                     <select
                       name="topicId"
                       onChange={handleSelectChange}
@@ -446,7 +504,9 @@ export default function AddQuestion() {
                   </div>
 
                   <div className="mb-4">
-                    <label className="block text-lg font-medium text-gray-700">Select Subtopic</label>
+                    <label className="block text-lg font-medium text-gray-700">
+                      Select Subtopic
+                    </label>
                     <select
                       name="subtopicId"
                       onChange={handleSelectChange}
@@ -466,10 +526,14 @@ export default function AddQuestion() {
 
               {/* Solution Text Area */}
               <div className="mb-4">
-                <label className="block text-lg font-medium text-gray-700">Solution</label>
-                
-                <QuillEditor value={formData.solution} 
-                onChange={(value) => handleEditorChange('solution', value)} /> 
+                <label className="block text-lg font-medium text-gray-700">
+                  Solution
+                </label>
+
+                <QuillEditor
+                  value={formData.solution}
+                  onChange={(value) => handleEditorChange("solution", value)}
+                />
               </div>
 
               <button
