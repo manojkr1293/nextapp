@@ -1,12 +1,9 @@
 'use client'
 
 import { motion, useScroll, useTransform } from "framer-motion";
-
-import Lottie from "react-lottie";
-import animationData from "../../../public/aboutus2.json";
-import contactData from "../../../public/contact2.json";
+import LottieAnimation from '../component/LottieAnimation';
 import engineering from "../../../public/images/engg.png";
-import mobilelines from "../../../public/images/icon/mobile-lines.svg";
+
 import focus from "../../../public/images/focus.png";
 import medical from "../../../public/images/medical.png";
 import gov from "../../../public/images/gov.png";
@@ -19,11 +16,10 @@ import bgImage2 from '../../../public/images/06.png';
 import bgImage3 from '../../../public/images/07.png';
 import Link from "next/link";
 import Roadmap from "../component/Roadmap";
-import HeroSection from "../component/HeroSection";
-import HeroSection2 from "../component/HeroSection2";
+
 import HeaderSection from "../component/HeaderSection";
 import FoundationSection from "../component/FoundationSection";
-import AnimatedSvg from "../component/AnimatedSvg";
+
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -147,7 +143,8 @@ export default function Home() {
   <div className="container mx-auto flex flex-col lg:flex-row ">
   {/* Left Column - Image */}
   <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-  <Lottie options={{ loop: true, autoplay: true, animationData }}  width={720} />
+  <LottieAnimation/>
+  
     {/*<img 
       src="https://preview.tailwindtemplates.co/plain/assets/images/about.svg" 
       alt="about" 
@@ -228,8 +225,8 @@ export default function Home() {
       {/* Left Column - Image */}
        
       <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
+      <LottieAnimation/>
       
-      <Lottie options={{ loop: true, autoplay: true, animationData }}  width={720} />
       </div>
       
       {/* Right Column - Form */}
