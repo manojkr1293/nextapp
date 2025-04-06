@@ -1,8 +1,6 @@
 'use client'
 import { FaBook, FaClipboardCheck, FaChartLine, FaTrophy } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Lottie from "react-lottie";
-import animationData from "../../../public/aboutus2.json";
 import medical from "../../../public/images/medical.png";
 import bgImage2 from '../../../public/images/06.png';
 import bgImage3 from '../../../public/images/07.png';

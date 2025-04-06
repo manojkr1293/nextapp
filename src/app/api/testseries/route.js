@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { fetchtestSeriesOnId, getAlltestSeriesModels } from 'services/testseriesModelService';
-
+export const dynamic = 'force-dynamic';
 
 export async function GET(req) {
   try {
