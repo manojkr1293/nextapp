@@ -3,10 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import LottieAnimation from "./component/LottieAnimation";
 
-import engineering from "../../public/images/engg.png";
+import engineering from "../../public/images/gifli1.jpeg";
 
 import focus from "../../public/images/focus.png";
-import medical from "../../public/images/medical.png";
+import medical from "../../public/images/gifli2.jpeg";
 import gov from "../../public/images/gov.png";
 import { BsArrowRight } from "react-icons/bs";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
@@ -61,9 +61,9 @@ export default function Home() {
     <>
       <HeaderSection />
 
-      <section className="relative bg-gradient-to-t from-teal-100 to-white py-5 overflow-hidden mb-24">
+      {/* <section className="relative bg-gradient-to-t from-teal-100 to-white py-5 overflow-hidden mb-24">
         <div className="container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
-          {/* Left Content */}
+          
           <div className="md:w-1/2 space-y-6 text-left">
             <h1 className="leading-2 text-5xl font-bold text-gray-900">
               Learning without limits, ‍
@@ -82,9 +82,9 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Right Parallax Images */}
+        
           <div className="relative flex md:w-1/2 h-[500px]">
-            {/* Parallax Image 1 */}
+           
             <motion.div
               className="absolute -top-48 right-[-180px] w-[300px] h-[500px] overflow-hidden"
               style={{ y: parallaxY1 }}
@@ -96,7 +96,7 @@ export default function Home() {
               />
             </motion.div>
 
-            {/* Parallax Image 2 */}
+          
             <motion.div
               className="absolute -bottom-96 left-20 w-[350px] h-[380px] overflow-hidden"
               style={{ y: parallaxY2 }}
@@ -109,7 +109,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Exam Categories */}
       <section className=" text-center">
@@ -130,7 +130,7 @@ export default function Home() {
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-96 object-initial"
                   />
                   <div className="p-6 bg-white flex justify-between items-center">
                     <h3 className="text-2xl font-semibold text-gray-900">
@@ -146,7 +146,6 @@ export default function Home() {
       </section>
 
       <FoundationSection />
-      <Roadmap />
 
       <section
         id="why"

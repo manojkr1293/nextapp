@@ -5,15 +5,38 @@ import AnimatedSvg from "./AnimatedSvg";
 
 const FoundationSection = () => {
   return (
-    <section className="relative py-20 mt-20 bg-gradient-to-b from-[#6a11cb] to-[#2575fc] text-white overflow-hidden">
+    <section
+      className="relative py-20 mt-20 bg-gradient-to-t from-purple-500 to-white
+        overflow-hidden"
+    >
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center space-y-12 text-center">
+        <div className="flex flex-col items-center justify-center  text-center">
           {/* Success Badge */}
-          <AnimatedSvg/>
+          <motion.h2
+            className="text-5xl font-extrabold mb-4 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Your Roadmap to Exam Success
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p
+            className="text-lg max-w-3xl mx-auto mb-24 mt-7 opacity-80"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Follow a structured approach to build confidence and master your
+            exams.
+          </motion.p>
+          <AnimatedSvg />
           <div
             className="flex flex-col items-center p-2 border-2  rounded-3xl bg-opacity-30 backdrop-blur-lg shadow-lg"
             style={{
-              borderImage: "linear-gradient(45deg, #FFD700, #FF6347, #8A2BE2) 1",
+              borderImage:
+                "linear-gradient(45deg, #FFD700, #FF6347, #8A2BE2) 1",
             }}
           >
             <motion.img
@@ -22,7 +45,11 @@ const FoundationSection = () => {
               className="w-24 drop-shadow-[0_0_30px_rgba(255,215,0,0.8)]"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             />
             <h1 className="text-4xl font-black text-yellow-300 drop-shadow-lg mt-3">
               Success

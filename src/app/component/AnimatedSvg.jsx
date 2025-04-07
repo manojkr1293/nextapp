@@ -1,10 +1,10 @@
-import React, { useEffect,useState  } from 'react';
-import confetti from 'canvas-confetti';
+import React, { useEffect, useState } from "react";
+import confetti from "canvas-confetti";
 const AnimatedSvg = () => {
   const [celebrated, setCelebrated] = useState(false);
 
   useEffect(() => {
-    const paths = document.querySelectorAll('.path-pulse');
+    const paths = document.querySelectorAll(".path-pulse");
 
     const handleAnimationIteration = () => {
       if (!celebrated) {
@@ -20,19 +20,22 @@ const AnimatedSvg = () => {
 
     // Attach event listeners
     paths.forEach((path) => {
-      path.addEventListener('animationiteration', handleAnimationIteration);
+      path.addEventListener("animationiteration", handleAnimationIteration);
     });
 
     // Cleanup listeners
     return () => {
       paths.forEach((path) => {
-        path.removeEventListener('animationiteration', handleAnimationIteration);
+        path.removeEventListener(
+          "animationiteration",
+          handleAnimationIteration
+        );
       });
     };
   }, [celebrated]);
 
   return (
-    <div className="absolute flex items-center justify-center space-x-0 p-5">
+    <div className="absolute flex items-center justify-center space-x-0 mt-48 p-5">
       <svg
         className="w-full h-auto"
         fill="none"
@@ -45,28 +48,64 @@ const AnimatedSvg = () => {
         <defs>
           {/* Gradient Definitions */}
           <linearGradient id="orange-pulse-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#FF6600", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#FF3300", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#FF6600", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#FF3300", stopOpacity: 1 }}
+            />
           </linearGradient>
           <linearGradient id="blue-pulse-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#0066FF", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#0033FF", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#0066FF", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#0033FF", stopOpacity: 1 }}
+            />
           </linearGradient>
           <linearGradient id="pink-pulse-1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#FF66CC", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#FF33CC", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#FF66CC", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#FF33CC", stopOpacity: 1 }}
+            />
           </linearGradient>
           <linearGradient id="orange-pulse-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#FF6600", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#FF3300", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#FF6600", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#FF3300", stopOpacity: 1 }}
+            />
           </linearGradient>
           <linearGradient id="blue-pulse-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#0066FF", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#0033FF", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#0066FF", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#0033FF", stopOpacity: 1 }}
+            />
           </linearGradient>
           <linearGradient id="pink-pulse-2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#FF66CC", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "#FF33CC", stopOpacity: 1 }} />
+            <stop
+              offset="0%"
+              style={{ stopColor: "#FF66CC", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#FF33CC", stopOpacity: 1 }}
+            />
           </linearGradient>
         </defs>
 
@@ -154,23 +193,21 @@ const AnimatedSvg = () => {
             strokeDasharray="1px 1px"
           ></path>
           <path
-          id="pulse-path"
-          d="M388 184L388 194C388 196.209 386.209 198 384 198L77 198C74.7909 198 73 199.791 73 202L73 264"
-          stroke="url(#blue-pulse-2)"
-          strokeLinecap="round"
-          strokeWidth="2"
-          strokeDasharray="500" // Set to the total length of the path
-          strokeDashoffset="500" // Initially hidden
-          className="path-pulse"
-        ></path>
+            id="pulse-path"
+            d="M388 184L388 194C388 196.209 386.209 198 384 198L77 198C74.7909 198 73 199.791 73 202L73 264"
+            stroke="url(#blue-pulse-2)"
+            strokeLinecap="round"
+            strokeWidth="2"
+            strokeDasharray="500" // Set to the total length of the path
+            strokeDashoffset="500" // Initially hidden
+            className="path-pulse"
+          ></path>
         </g>
         <g>
           <path
-        
             d="M412 263.5L412 184"
             stroke="url(#pink-pulse-1)"
             strokeWidth="2"
-            
           ></path>
         </g>
         <g>
@@ -255,19 +292,68 @@ const AnimatedSvg = () => {
 
         {/* Circles */}
         <circle cx="460" cy="64" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="460" cy="64" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="460"
+          cy="64"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="308" cy="64" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="308" cy="64" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="308"
+          cy="64"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="69" cy="173" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="69" cy="173" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="69"
+          cy="173"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="436" cy="214" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="436" cy="214" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="436"
+          cy="214"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="460" cy="240" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="460" cy="240" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="460"
+          cy="240"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="560" cy="214" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="560" cy="214" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="560"
+          cy="214"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
         <circle cx="560" cy="197" fill="#d7d7d7" r="4" opacity="1"></circle>
-        <circle cx="560" cy="197" r="3.5" stroke="#d7d7d7" strokeOpacity="1" opacity="1"></circle>
+        <circle
+          cx="560"
+          cy="197"
+          r="3.5"
+          stroke="#d7d7d7"
+          strokeOpacity="1"
+          opacity="1"
+        ></circle>
       </svg>
       <style>
         {`
