@@ -137,26 +137,29 @@ export default function HeaderSection() {
         }}
       />
       {/* Main Content */}
-      <div className="relative z-10 text-center max-w-7xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <p className="text-4xl font-semibold leading-relaxed bg-clip-text text-transparent gradient-heading">
-              "{quotes[index].text}"
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <div className="absolute bottom-12 w-full flex justify-center z-10">
+
+      <div className="absolute bottom-12 w-full flex flex-col items-center z-10 space-y-6">
+        <div className="relative z-10 text-center max-w-7xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+            >
+              <p className="text-4xl font-semibold leading-relaxed bg-clip-text text-transparent gradient-heading">
+                "{quotes[index].text}"
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
         <button className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl text-lg font-semibold hover:scale-105 transition-transform">
           Get Started
         </button>
       </div>
+
       <style jsx>{`
         .gradient-heading {
           line-height: 80px;
