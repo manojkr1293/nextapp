@@ -1,6 +1,4 @@
 "use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
 import LottieAnimation from "./component/LottieAnimation";
 
 import engineering from "../../public/images/gifli1.jpeg";
@@ -13,21 +11,14 @@ import { BsArrowRight } from "react-icons/bs";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import Footer from "./component/Footer";
-import Image from "next/image";
-import bgImage2 from "../../public/images/06.png";
-import bgImage3 from "../../public/images/07.png";
+
 import Link from "next/link";
-import Roadmap from "./component/Roadmap";
 
 import HeaderSection from "./component/HeaderSection";
-import FoundationSection from "./component/FoundationSection";
+
 import SuccessFlow from "./component/SuccessFlow";
 
 export default function Home() {
-  const { scrollY } = useScroll();
-  const parallaxY1 = useTransform(scrollY, [0, 500], [0, -50]); // Adjust range as needed
-  const parallaxY2 = useTransform(scrollY, [0, 800], [0, -750]);
-
   const examscategories = [
     {
       title: "IIT JEE",
