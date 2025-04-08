@@ -1,39 +1,6 @@
 import React, { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 const AnimatedSvg = () => {
-  const [celebrated, setCelebrated] = useState(false);
-
-  useEffect(() => {
-    const paths = document.querySelectorAll(".path-pulse");
-
-    const handleAnimationIteration = () => {
-      if (!celebrated) {
-        // Trigger confetti once on first animation cycle
-        confetti({
-          particleCount: 150,
-          spread: 70,
-          origin: { y: 0.6 },
-        });
-        setCelebrated(true);
-      }
-    };
-
-    // Attach event listeners
-    paths.forEach((path) => {
-      path.addEventListener("animationiteration", handleAnimationIteration);
-    });
-
-    // Cleanup listeners
-    return () => {
-      paths.forEach((path) => {
-        path.removeEventListener(
-          "animationiteration",
-          handleAnimationIteration
-        );
-      });
-    };
-  }, [celebrated]);
-
   return (
     <div className="absolute flex items-center justify-center space-x-0 mt-48 p-5">
       <svg
