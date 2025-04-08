@@ -23,7 +23,7 @@ const FoundationSection = () => {
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg max-w-3xl mx-auto mb-24 mt-7 opacity-80"
+            className="text-lg max-w-3xl mx-auto pb-48 mb-5 mt-7 opacity-80"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -32,28 +32,34 @@ const FoundationSection = () => {
             exams.
           </motion.p>
           <AnimatedSvg />
-          <div
-            className="flex flex-col items-center p-2 border-2  rounded-3xl bg-opacity-30 backdrop-blur-lg shadow-lg"
-            style={{
-              borderImage:
-                "linear-gradient(45deg, #FFD700, #FF6347, #8A2BE2) 1",
-            }}
-          >
-            <motion.img
-              src="https://i.ibb.co/kVZ3CN6/trophy.png"
-              alt="trophy"
-              className="w-24 drop-shadow-[0_0_30px_rgba(255,215,0,0.8)]"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-            <h1 className="text-4xl font-black text-yellow-300 drop-shadow-lg mt-3">
+          <div className="relative z-10 flex flex-col items-center -mt-44">
+            <motion.h1
+              className="text-5xl font-extrabold bg-gradient-to-r from-[#DF45A5] to-[#9534E8] bg-clip-text text-transparent mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+            >
               Success
-            </h1>
+            </motion.h1>
+            <motion.div
+              className="p-5 rounded-full bg-gradient-to-tr from-yellow-300 via-pink-400 to-red-400 shadow-2xl "
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.img
+                src="https://i.ibb.co/kVZ3CN6/trophy.png"
+                alt="trophy"
+                className="w-24 drop-shadow-[0_0_30px_rgba(255,195,0,0.6)]"
+                initial={{ rotate: -10 }}
+                animate={{ rotate: 10 }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              />
+            </motion.div>
           </div>
         </div>
 

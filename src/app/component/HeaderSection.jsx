@@ -70,7 +70,7 @@ export default function HeaderSection() {
 
   return (
     <div className="relative flex flex-col justify-center items-center h-screen w-full overflow-hidden">
-      <header className="absolute top-0 left-0 w-full px-28 py-14 flex items-center justify-between z-20">
+      <header className="absolute top-0 left-0 w-full px-20 py-14 flex items-center justify-between z-20">
         {/* Logo (Left Side) */}
         <Link href="/home">
           <div className="text-5xl font-bold text-gray-800">SankalpX</div>

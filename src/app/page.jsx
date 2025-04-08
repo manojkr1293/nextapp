@@ -17,6 +17,7 @@ import Link from "next/link";
 import HeaderSection from "./component/HeaderSection";
 
 import SuccessFlow from "./component/SuccessFlow";
+import FoundationSection from "./component/FoundationSection";
 
 export default function Home() {
   const examscategories = [
@@ -87,8 +88,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <FoundationSection />
 
-      <SuccessFlow />
       <section
         id="why"
         className="about_area pt-20 relative items-center overflow-hidden bg-gradient-to-t from-teal-100 to-white"
