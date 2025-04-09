@@ -15,8 +15,16 @@ theme: {
 			gradientQuotes: 'gradientQuotes 8s ease infinite',
 			pulsecustom: 'pulseAnimation 2s infinite ease-in-out',
 			dash: 'dashAnimation 2s linear infinite',
+			border: 'gradientBorder 6s ease infinite',
+		
 		},
+		
 		keyframes: {
+			
+			gradientBorder: {
+				'0%, 100%': { backgroundPosition: '0% 50%' },
+				'50%': { backgroundPosition: '100% 50%' },
+			},
 			pulseAnimation: {
 				'0%': { opacity: 1 },
 				'50%': { opacity: 0.5 },

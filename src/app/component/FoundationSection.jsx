@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FaBook, FaClipboardCheck, FaChartLine } from "react-icons/fa";
 import React from "react";
 import AnimatedSvg from "./AnimatedSvg";
-
+import styles from "./FoundationSection.module.css";
 const FoundationSection = () => {
   return (
     <section
@@ -71,6 +71,7 @@ const FoundationSection = () => {
             title="Learn"
             description="Build strong fundamentals with expert-led content."
             gradient="from-blue-500 to-indigo-600"
+            borderColor="#3b82f6" // blue
           />
 
           <StepCard
@@ -79,6 +80,7 @@ const FoundationSection = () => {
             title="Practice"
             description="Test yourself with exam-level questions & quizzes."
             gradient="from-purple-500 to-pink-500"
+            borderColor="#ec4899" // pink
           />
 
           <StepCard
@@ -87,6 +89,7 @@ const FoundationSection = () => {
             title="Improve"
             description="Identify weaknesses and refine your strategies."
             gradient="from-orange-500 to-red-500"
+            borderColor="#f97316" // orange
           />
         </div>
       </div>
@@ -97,24 +100,46 @@ const FoundationSection = () => {
 export default FoundationSection;
 
 // Step Card Component
-function StepCard({ icon, step, title, description, gradient }) {
+function StepCard({ icon, step, title, description, gradient, borderColor }) {
   return (
-    <motion.div
-      className="relative flex flex-col items-center bg-white bg-opacity-10 p-8 rounded-2xl shadow-xl backdrop-blur-lg border border-gray-200 text-center max-w-xs transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    >
+    <>
       <div
-        className={`w-16 h-16 flex items-center justify-center bg-gradient-to-r ${gradient} text-white text-3xl font-bold rounded-full shadow-md`}
+        className={styles.animatedBorder}
+        style={{ "--border-color": borderColor }}
       >
-        {icon}
+        {/* Animated Border Spans */}
+        <span>
+          <span></span>
+        </span>
+        <span>
+          <span></span>
+        </span>
+        <span>
+          <span></span>
+        </span>
+        <span>
+          <span></span>
+        </span>
+
+        {/* Card Content with motion.div */}
+        <motion.div
+          className="relative flex flex-col items-center bg-white bg-opacity-10 p-8 rounded-2xl shadow-xl backdrop-blur-lg border border-gray-200 text-center max-w-xs transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div
+            className={`w-16 h-16 flex items-center justify-center bg-gradient-to-r ${gradient} text-white text-3xl font-bold rounded-full shadow-md`}
+          >
+            {icon}
+          </div>
+          <div className="text-2xl font-semibold mt-5 text-white drop-shadow-lg">
+            {title}
+          </div>
+          <div className={styles.description}>{description}</div>
+        </motion.div>
       </div>
-      <h3 className="text-2xl font-semibold mt-5 text-white drop-shadow-lg">
-        {title}
-      </h3>
-      <p className="text-gray-300 text-md mt-2">{description}</p>
-    </motion.div>
+    </>
   );
 }

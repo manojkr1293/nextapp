@@ -18,6 +18,7 @@ import HeaderSection from "./component/HeaderSection";
 
 import SuccessFlow from "./component/SuccessFlow";
 import FoundationSection from "./component/FoundationSection";
+import Animatedcards from "./component/Animatedcards";
 
 export default function Home() {
   const examscategories = [
