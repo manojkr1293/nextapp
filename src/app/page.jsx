@@ -176,9 +176,9 @@ export default function Home() {
 
       <section
         id="why"
-        className="about_area relative items-center overflow-hidden bg-gradient-to-t from-teal-100 to-white px-4 sm:px-6 lg:px-8"
+        className="about_area relative items-center overflow-hidden bg-gradient-to-t from-teal-100 to-white px-4 sm:px-6 lg:px-8 py-6"
       >
-        <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12">
           {/* Left Column - Image */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
             <LottieAnimation />
