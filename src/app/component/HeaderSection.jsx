@@ -69,21 +69,23 @@ export default function HeaderSection() {
   }, []);
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-screen w-full overflow-hidden">
-      <header className="absolute top-0 left-0 w-full px-20 py-14 flex items-center justify-between z-20">
+    <div className="relative flex flex-col justify-center items-center h-screen w-full overflow-hidden px-4 sm:px-6 md:px-10">
+      <header className="absolute top-0 left-0 w-full px-4 sm:px-10 py-6 sm:py-10 flex items-center justify-between z-20">
         {/* Logo (Left Side) */}
         <Link href="/home">
-          <div className="text-5xl font-bold text-gray-800">SankalpX</div>
+          <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+            SankalpX
+          </div>
         </Link>
         {/* Social Icons (Right Side) */}
-        <div className="flex gap-6">
+        <div className="flex gap-4 sm:gap-6">
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-purple-600 transition"
           >
-            <FaTwitter size={24} />
+            <FaTwitter size={20} className="sm:size-5" />
           </a>
           <a
             href="https://github.com"
@@ -91,7 +93,7 @@ export default function HeaderSection() {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-purple-600 transition"
           >
-            <FaGithub size={24} />
+            <FaGithub size={20} className="sm:size-5" />
           </a>
           <a
             href="https://linkedin.com"
@@ -99,28 +101,14 @@ export default function HeaderSection() {
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-purple-600 transition"
           >
-            <FaLinkedin size={24} />
+            <FaLinkedin size={20} className="sm:size-5" />
           </a>
         </div>
       </header>
-      {/* Gradient Effect */}
-      <div
-        className="absolute w-[755px] h-[650px] top-0 left-0 pointer-events-none animate-gradientShift"
-        style={{
-          borderRadius: "0px",
-          opacity: 1,
-        }}
-      />
-      {/* Right Green Gradient Animation */}
-      <div
-        className="absolute w-[755px] h-[650px] top-0 right-0 pointer-events-none animate-greenGradient"
-        style={{
-          borderRadius: "0px",
-          opacity: 1,
-        }}
-      />
 
-      {/* Center Light Yellow Gradient Animation */}
+      {/* Background Gradients */}
+      <div className="absolute w-[90%] sm:w-[755px] h-[650px] top-0 left-0 pointer-events-none animate-gradientShift" />
+      <div className="absolute w-[90%] sm:w-[755px] h-[650px] top-0 right-0 pointer-events-none animate-greenGradient" />
       <div
         className="absolute pointer-events-auto animate-yellowRotate"
         style={{
@@ -132,14 +120,15 @@ export default function HeaderSection() {
             "radial-gradient(50% 50% at 50% 50%, rgba(252, 212, 137, 0.6) 0%, rgba(252, 212, 137, 0.298) 62.48%, rgba(252, 212, 137, 0) 100%)",
           opacity: 1,
           display: "block",
-          width: "806.244px",
+          width: "90%",
+          maxWidth: "806px",
           height: "700px",
         }}
       />
-      {/* Main Content */}
 
-      <div className="absolute bottom-12 w-full flex flex-col items-center z-10 space-y-6">
-        <div className="relative z-10 text-center max-w-7xl">
+      {/* Main Content */}
+      <div className="absolute bottom-10 w-full flex flex-col items-center z-10 space-y-6 px-4 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -148,22 +137,22 @@ export default function HeaderSection() {
               exit={{ opacity: 0 }}
               transition={{ duration: 2 }}
             >
-              <p className="text-4xl font-semibold leading-relaxed bg-clip-text text-transparent gradient-heading">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-snug sm:leading-relaxed bg-clip-text text-transparent gradient-heading">
                 "{quotes[index].text}"
               </p>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <button className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl text-lg font-semibold hover:scale-105 transition-transform">
+        <button className="px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl text-base sm:text-lg font-semibold hover:scale-105 transition-transform">
           Get Started
         </button>
       </div>
 
       <style jsx>{`
         .gradient-heading {
-          line-height: 80px;
-          letter-spacing: 2px;
+          line-height: 1.4;
+          letter-spacing: 1px;
           text-align: center;
           background: linear-gradient(
             45deg,
@@ -174,7 +163,7 @@ export default function HeaderSection() {
           );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          background-size: 300% 300%; /* Ensure the gradient covers the entire text */
+          background-size: 300% 300%;
           animation: gradient-text 8s ease infinite;
         }
 
@@ -183,10 +172,10 @@ export default function HeaderSection() {
             background-position: 0% 50%;
           }
           50% {
-            background-position: 100% 50%; /* Move the gradient to the other side */
+            background-position: 100% 50%;
           }
           100% {
-            background-position: 0% 50%; /* Loop the gradient back to its initial position */
+            background-position: 0% 50%;
           }
         }
       `}</style>
