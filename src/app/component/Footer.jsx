@@ -4,7 +4,7 @@ import focus from "../../../public/images/focus.png";
 const Footer = () => {
   return (
     <section className="relative bg-purple-400 bg-no-repeat py-20 px-6 bg-contain bg-center sm:bg-[url('/images/focus.png')] bg-none">
-      <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
+      <div className="relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
         {/* Column 1 */}
         <div>
           <div className="text-4xl sm:text-5xl font-semibold mb-6 bg-gradient-to-r from-[#DF45A5] to-[#9534E8] bg-clip-text text-transparent">
