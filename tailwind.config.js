@@ -16,11 +16,12 @@ theme: {
 			pulsecustom: 'pulseAnimation 2s infinite ease-in-out',
 			dash: 'dashAnimation 2s linear infinite',
 			border: 'gradientBorder 6s ease infinite',
-		
+			heartbeat: 'heartbeat 1.8s ease-in-out infinite',
+			spinslow: 'spinslow 6s linear infinite',
 		},
 		
 		keyframes: {
-			
+		
 			gradientBorder: {
 				'0%, 100%': { backgroundPosition: '0% 50%' },
 				'50%': { backgroundPosition: '100% 50%' },
@@ -38,6 +39,17 @@ theme: {
 				'0%': { backgroundPosition: '0% 50%' },
 				'50%': { backgroundPosition: '100% 50%' },
 				'100%': { backgroundPosition: '0% 50%' },
+			},
+			heartbeat: {
+					'0%, 100%': { transform: 'scale(1)' },
+					'14%': { transform: 'scale(1.3)' },
+					'28%': { transform: 'scale(1)' },
+					'42%': { transform: 'scale(1.2)' },
+					'70%': { transform: 'scale(1)' }
+			},
+			spinslow: {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
 			},
 			yellowRotate : {
 				'0%': {

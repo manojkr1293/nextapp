@@ -8,58 +8,34 @@ import { GiHeartOrgan, GiSkeleton, GiKidneys, GiBrain } from "react-icons/gi";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import TestimonialCarousel from "../component/TestimonialCarousel";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Header2 } from "../component/Header2";
+import { Footer2 } from "../component/Footer2";
+import { MobileCTA } from "../component/MobileCTA";
+import { FeaturedItems } from "../component/FeaturedItems";
 const MotionStethoscope = motion(FaStethoscope);
-const testimonials = [
-  {
-    name: "Neha",
-    text: "The AI-based analysis helped me identify and improve my weak areas. Highly recommended!",
-    avatar: "👩‍🎓",
-  },
-  {
-    name: "Aarav",
-    text: "Mock tests felt like real NEET exams. My confidence shot up!",
-    avatar: "👨‍🎓",
-  },
-  {
-    name: "Simran",
-    text: "Loved the solutions & detailed analytics. Easy to follow and helpful!",
-    avatar: "👩‍⚕️",
-  },
-];
-export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-  };
 
+export default function Home() {
+  const [itemsArray, setitemsArray] = useState([
+    {
+      icon: "📋",
+      title: "NEET UG Fulltests",
+      desc: "Full-length mock tests based on the latest NEET pattern.",
+    },
+    {
+      icon: "🩺",
+      title: "AIIMS-Type Tests",
+      desc: "Assertion & reason tests tailored for AIIMS preparation.",
+    },
+    {
+      icon: "📖",
+      title: "NCERT Tests",
+      desc: "Chapter-wise tests aligned with the NCERT syllabus.",
+    },
+  ]);
   return (
     <main className="bg-white text-gray-900 font-sans">
       {/* Header */}
       <Header2 />
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <nav className="md:hidden bg-white shadow-md px-6 py-4 space-y-4 text-gray-700 text-lg font-medium">
-          {["Home", "Features", "Pricing", "Testimonials"].map((item) => (
-            <a key={item} href="#" className="block">
-              {item}
-            </a>
-          ))}
-          <button className="w-full bg-green-600 text-white py-2 rounded-lg mt-2">
-            Join Now
-          </button>
-        </nav>
-      )}
 
       {/* Hero Section */}
       <section className="relative bg-blue-900 text-white px-4 sm:px-8 lg:px-24 py-16 overflow-hidden">
@@ -113,43 +89,10 @@ export default function Home() {
       </section>
 
       {/* Test Types */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">
-            Practice Makes Perfect
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                icon: "📋",
-                title: "NEET UG Fulltests",
-                desc: "Full-length mock tests based on the latest NEET pattern.",
-              },
-              {
-                icon: "🩺",
-                title: "AIIMS-Type Tests",
-                desc: "Assertion & reason tests tailored for AIIMS preparation.",
-              },
-              {
-                icon: "📖",
-                title: "NCERT Tests",
-                desc: "Chapter-wise tests aligned with the NCERT syllabus.",
-              },
-            ].map(({ icon, title, desc }) => (
-              <div
-                key={title}
-                className="bg-white shadow-xl rounded-2xl p-8 text-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-              >
-                <div className="text-5xl mb-6">{icon}</div>
-                <h3 className="text-2xl font-semibold text-blue-700 mb-3">
-                  {title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeaturedItems
+        sectionTitle="Practice Makes Perfect"
+        itemsArray={itemsArray}
+      />
 
       {/* Why Choose Us */}
       <section className="bg-white py-20">
@@ -227,161 +170,16 @@ export default function Home() {
         </div>
       </section>
 
+      <TestimonialCarousel />
       {/* Testimonials */}
-      {/* Testimonials */}
-      <section className="bg-blue-50 px-6 py-16">
-        <h2 className="text-3xl font-bold text-center text-blue-900 mb-10">
-          What Students Say
-        </h2>
-        <div className="max-w-4xl mx-auto">
-          <Slider {...sliderSettings}>
-            {testimonials.map(({ name, text, avatar }, index) => (
-              <div
-                key={index}
-                className="text-center p-8 bg-white rounded-xl shadow-xl"
-              >
-                <div className="mb-4">
-                  <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-blue-200">
-                    <span className="text-3xl">{avatar}</span>
-                  </div>
-                </div>
-                <p className="text-gray-700 italic mb-3">“{text}”</p>
-                <p className="text-blue-800 font-semibold">{name}, NEET 2024</p>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </section>
 
       {/* Final CTA */}
 
       {/* Mobile CTA Button */}
-      <div className="fixed bottom-6 right-6 z-50 md:hidden">
-        <button className="bg-green-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-green-700">
-          🚀 Start Test
-        </button>
-      </div>
+      <MobileCTA />
 
       {/* Footer */}
-      <footer className="bg-blue-300 dark:bg-gray-900 text-gray-700 dark:text-gray-300 pt-16 pb-10 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          {/* Column 1 */}
-          <div>
-            <h4 className="text-xl font-bold text-blue-800 dark:text-blue-300 mb-4">
-              SankalpX
-            </h4>
-            <p className="text-sm">
-              Your trusted companion for NEET preparation. Personalized
-              AI-driven tools, mock tests & more.
-            </p>
-          </div>
-
-          {/* Column 2 */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Testimonials
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3 */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Resources</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Terms of Use
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4 */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3">Connect</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                Email:{" "}
-                <a
-                  href="mailto:contact@sankalpx.com"
-                  className="hover:text-blue-600"
-                >
-                  contact@sankalpx.com
-                </a>
-              </li>
-              <li>Phone: +91 9876543210</li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
-                  YouTube
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-      <div className="bg-blue-900 text-center text-xs text-gray-100 dark:text-gray-400  border-t py-6">
-        © 2024 SankalpX®. All rights reserved.
-      </div>
-
-      {/* Animations */}
-      <style>
-        {`@keyframes spin-slow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-            animation: spin-slow 6s linear infinite;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.2); }
-            70% { transform: scale(1); }
-        }
-        .animate-heartbeat {
-            animation: heartbeat 1.8s ease-in-out infinite;
-        }`}
-      </style>
+      <Footer2 />
     </main>
   );
 }

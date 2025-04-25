@@ -32,30 +32,28 @@ export default function TestimonialCarousel() {
   };
 
   return (
-    <Slider {...sliderSettings}>
-      {testimonials.map(({ name, text, avatar }, index) => (
-        <div
-          key={index}
-          className="flex flex-col w-full max-w-7xl items-center justify-center text-center bg-blue-100 dark:bg-gray-700 p-8 rounded-xl mx-auto"
-        >
-          {/* Centered Avatar */}
-          <div className="mb-4">
-            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-blue-300 dark:bg-blue-500 mx-auto">
-              <span className="text-3xl leading-none">{avatar}</span>
+    <section className="bg-blue-50 px-6 py-16">
+      <h2 className="text-3xl font-bold text-center text-blue-900 mb-10">
+        What Students Say
+      </h2>
+      <div className="max-w-4xl mx-auto">
+        <Slider {...sliderSettings}>
+          {testimonials.map(({ name, text, avatar }, index) => (
+            <div
+              key={index}
+              className="text-center p-8 bg-white rounded-xl shadow-xl"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-blue-200">
+                  <span className="text-3xl">{avatar}</span>
+                </div>
+              </div>
+              <p className="text-gray-700 italic mb-3">“{text}”</p>
+              <p className="text-blue-800 font-semibold">{name}, NEET 2024</p>
             </div>
-          </div>
-
-          {/* Testimonial Text */}
-          <p className="text-gray-800 dark:text-gray-200 italic mb-3">
-            “{text}”
-          </p>
-
-          {/* Name */}
-          <p className="text-blue-900 dark:text-blue-300 font-semibold">
-            {name}, NEET 2024
-          </p>
-        </div>
-      ))}
-    </Slider>
+          ))}
+        </Slider>
+      </div>
+    </section>
   );
 }
