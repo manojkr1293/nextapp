@@ -19,19 +19,20 @@ import HeaderSection from "./component/HeaderSection";
 import SuccessFlow from "./component/SuccessFlow";
 import FoundationSection from "./component/FoundationSection";
 import Animatedcards from "./component/Animatedcards";
+import { Header2 } from "./component/Header2";
 
 export default function Home() {
   const examscategories = [
     {
-      title: "IIT JEE",
-      link: "engineering",
+      title: "Engineering",
+      link: "engineering2",
       image: engineering.src,
       bgColor: "bg-blue-400",
       hoverBg: "hover:bg-blue-600",
     },
     {
-      title: "NEET",
-      link: "medical",
+      title: "Medical",
+      link: "medical2",
       image: medical.src,
       bgColor: "bg-green-400",
       hoverBg: "hover:bg-green-600",
@@ -76,7 +77,7 @@ export default function Home() {
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-64 sm:h-72 md:h-80 object-cover"
+                    className="w-full h-64 sm:h-72 md:h-80 object-unset"
                   />
                   <div className="p-4 sm:p-5 md:p-6 bg-white flex justify-between items-center">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
