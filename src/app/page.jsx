@@ -2,7 +2,7 @@
 import LottieAnimation from "./component/LottieAnimation";
 
 import engineering from "../../public/images/gifli1.jpeg";
-
+import cuet from "../../public/images/cuet.png";
 import focus from "../../public/images/focus.png";
 import medical from "../../public/images/gifli2.jpeg";
 
@@ -38,6 +38,13 @@ export default function Home() {
       hoverBg: "hover:bg-green-600",
     },
     {
+      title: "CUET",
+      link: "cuet",
+      image: cuet.src,
+      bgColor: "bg-yellow-400",
+      hoverBg: "hover:bg-yellow-600",
+    },
+    {
       title: "Govt Job Exams",
       link: "government",
       image: gov.src,
@@ -68,7 +75,7 @@ export default function Home() {
             competitive exams.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
             {examscategories.map((category, index) => (
               <Link key={index} href={category.link}>
                 <div
@@ -77,7 +84,7 @@ export default function Home() {
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-64 sm:h-72 md:h-80 object-unset"
+                    className="w-full h-80 object-cover"
                   />
                   <div className="p-4 sm:p-5 md:p-6 bg-white flex justify-between items-center">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
