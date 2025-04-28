@@ -46,7 +46,7 @@ export default function Home() {
     },
     {
       title: "Govt Job Exams",
-      link: "government",
+      link: "gov",
       image: gov.src,
       bgColor: "bg-purple-400",
       hoverBg: "hover:bg-purple-600",
