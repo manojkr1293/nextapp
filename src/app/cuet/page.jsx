@@ -113,7 +113,7 @@ export default function Home() {
     <main className=" text-gray-900 font-sans overflow-x-hidden relative scroll-smooth">
       {/* Blurred Animated Blobs */}
 
-      <header className="fixed top-0 left-0 w-full z-50 bg-[#FFF78C] backdrop-blur  shadow-sm">
+      <header className="fixed top-0 left-0 w-full z-50 bg-yellow-100 backdrop-blur  shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
           <Link href="/">
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 tracking-wide">
@@ -159,7 +159,7 @@ export default function Home() {
         )}
       </header>
       {/* Hero */}
-      <section className="relative bg-[#FFF78C] text-gray-900 px-4 sm:px-8 lg:px-24 pt-32 pb-20">
+      <section className="relative bg-yellow-100 text-gray-900 px-4 sm:px-8 lg:px-24 pt-32 pb-20">
         <FaBookOpen className="absolute right-36 top-28 text-yellow-900 text-3xl sm:text-3xl " />
         <FaChalkboardTeacher className="absolute left-1/3 top-32 text-yellow-900 text-3xl sm:text-4xl  animate-bounce" />
         <MdQuiz className="absolute bottom-8 right-20 text-red-700 text-5xl animate-bounce opacity-60" />
@@ -315,7 +315,7 @@ export default function Home() {
         </div>
       </section>
       {/* CTA Banner */}
-      <section className="bg-[#FFF78C] py-16 text-center">
+      <section className="bg-yellow-100 py-16 text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to Ace CUET?</h2>
         <p className="mb-6 text-lg">
           Join thousands of toppers using SankalpX!
